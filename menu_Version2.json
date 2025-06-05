@@ -1,0 +1,146 @@
+{
+  "Antipasta / Ορεκτικά": [
+    {
+      "name": "Patate / Fries",
+      "price": "3.00€",
+      "image": "images/fries.jpg"
+    },
+    {
+      "name": "Salcë kosi / Sour Cream",
+      "price": "2.00€",
+      "image": "images/sour_cream.jpg"
+    },
+    {
+      "name": "Djathtë i Bardhë / White Cheese",
+      "price": "2.50€",
+      "image": "images/white_cheese.jpg"
+    },
+    {
+      "name": "Perime Zgare / Grilled Vegetables",
+      "price": "4.00€",
+      "image": "images/grilled_vegetables.jpg"
+    },
+    {
+      "name": "Djath i Pjekur / Baked Cheese",
+      "price": "4.00€",
+      "image": "images/baked_cheese.jpg"
+    },
+    {
+      "name": "Tirokafteri",
+      "price": "3.50€",
+      "image": "images/tirokafteri.jpg"
+    }
+  ],
+  "Sufllaqe / Gyro": [
+    {
+      "name": "Sufllaqe Pulë / Chicken Gyro",
+      "price": "3.50€",
+      "image": "images/chicken_gyro.jpg"
+    },
+    {
+      "name": "Sufllaqe me Shishqebap Pulë",
+      "price": "3.80€",
+      "image": "images/chicken_kebab_gyro.jpg"
+    },
+    {
+      "name": "Sufllaqe Suxhuk",
+      "price": "3.80€",
+      "image": "images/suxhuk_gyro.jpg"
+    },
+    {
+      "name": "Sufllaqe Loukaniko",
+      "price": "3.80€",
+      "image": "images/loukaniko_gyro.jpg"
+    },
+    {
+      "name": "Sufllaqe Vegjetariane",
+      "price": "3.50€",
+      "image": "images/veggie_gyro.jpg"
+    }
+  ],
+  "Shishqebap / Skewers": [
+    {
+      "name": "Shishqebap Pule (1 copë)",
+      "price": "1.50€",
+      "image": "images/chicken_skewer.jpg"
+    },
+    {
+      "name": "Shishqebap Viçi (1 copë)",
+      "price": "1.70€",
+      "image": "images/beef_skewer.jpg"
+    },
+    {
+      "name": "Shishqebap Mishi i Grirë",
+      "price": "1.50€",
+      "image": "images/minced_meat_skewer.jpg"
+    },
+    {
+      "name": "Loukaniko",
+      "price": "1.50€",
+      "image": "images/loukaniko.jpg"
+    }
+  ],
+  "Mish Zgare / Grilled Meat": [
+    {
+      "name": "Mish Viçi / Beef",
+      "price": "6.00€",
+      "image": "images/grilled_beef.jpg"
+    },
+    {
+      "name": "Mish Pule / Chicken",
+      "price": "5.00€",
+      "image": "images/grilled_chicken.jpg"
+    },
+    {
+      "name": "Mish i Përzier / Mixed Grill",
+      "price": "7.50€",
+      "image": "images/mixed_grill.jpg"
+    }
+  ],
+  "Suxhuk / Sausage Dishes": [
+    {
+      "name": "Suxhuk",
+      "price": "3.50€",
+      "image": "images/suxhuk.jpg"
+    },
+    {
+      "name": "Suxhuk Special",
+      "price": "4.50€",
+      "image": "images/suxhuk_special.jpg"
+    }
+  ],
+  "Pjata Speciale / Special Plates": [
+    {
+      "name": "Pjatë Speciale",
+      "price": "6.50€",
+      "image": "images/special_plate.jpg"
+    },
+    {
+      "name": "Pjatë Vegjetariane",
+      "price": "5.50€",
+      "image": "images/vegetarian_plate.jpg"
+    }
+  ],
+  "Pije / Drinks": [
+    {
+      "name": "Ujë",
+      "price": "0.50€",
+      "image": "images/water.jpg"
+    },
+    {
+      "name": "Lëng",
+      "price": "1.00€",
+      "image": "images/juice.jpg"
+    },
+    {
+      "name": "Coca Cola / Pepsi",
+      "price": "1.50€",
+      "image": "images/cola.jpg"
+    },
+    {
+      "name": "Birrë",
+      "price": "2.00€",
+      "image": "images/beer.jpg"
+    }
+  ]
+}
