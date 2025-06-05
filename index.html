@@ -2,67 +2,46 @@
 <html lang="el">
 <head>
     <meta charset="UTF-8">
-    <title>Ηλεκτρονικό Μενού</title>
+    <title>Μενού Καταστήματος</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <style>
         body { font-family: Arial, sans-serif; background: #fafafa; margin: 0; padding: 0; }
-        .container { max-width: 900px; margin: 40px auto; background: #fff; border-radius: 12px; box-shadow: 0 2px 8px #0002; padding: 24px; }
-        h1 { text-align: center; margin-bottom: 30px; }
-        .category { margin-top: 32px; font-size: 1.25em; font-weight: bold; background: #f1f1f1; padding: 8px 12px; border-radius: 8px; }
-        .menu-list { display: flex; flex-wrap: wrap; gap: 16px; margin-top: 10px; }
-        .menu-item { background: #f8f8f8; border-radius: 8px; padding: 12px; flex: 1 1 300px; min-width: 260px; display: flex; align-items: center; box-shadow: 0 1px 4px #0001; }
-        .menu-item img { width: 70px; height: 70px; object-fit: cover; border-radius: 8px; margin-right: 12px; background: #eee; }
-        .item-info { flex: 1; }
-        .item-name { font-weight: bold; }
-        .item-price { color: #007b00; margin-top: 4px; }
-        @media (max-width: 700px) {
-            .menu-list { flex-direction: column; }
-            .menu-item { min-width: 0; }
+        .container { max-width: 800px; margin: 40px auto; background: #fff; border-radius: 12px; box-shadow: 0 2px 8px #0002; padding: 24px; }
+        h1 { text-align: center; }
+        .cat-list { display: flex; flex-wrap: wrap; gap: 20px; justify-content: center; margin-top: 40px; }
+        .cat-card {
+            background: #e8e8e8;
+            border-radius: 10px;
+            padding: 32px;
+            font-size: 1.3em;
+            font-weight: bold;
+            cursor: pointer;
+            text-align: center;
+            min-width: 220px;
+            transition: background 0.2s, box-shadow 0.2s;
+            box-shadow: 0 2px 8px #0001;
         }
+        .cat-card:hover { background: #d2f0d2; box-shadow: 0 4px 16px #0002; }
     </style>
 </head>
 <body>
 <div class="container">
-    <h1>Μενού Καταστήματος</h1>
-    <div id="menu"></div>
+    <h1>Κατηγορίες Μενού</h1>
+    <div class="cat-list" id="cat-list"></div>
 </div>
 <script>
-async function fetchMenu() {
-    try {
-        const response = await fetch('menu_Version2.json');
-        if (!response.ok) {
-            document.getElementById('menu').textContent = 'Αποτυχία φόρτωσης μενού.';
-            return;
-        }
-        const data = await response.json();
-        const menuDiv = document.getElementById('menu');
-        menuDiv.innerHTML = '';
-        Object.keys(data).forEach(categoryName => {
-            const catElem = document.createElement('div');
-            catElem.innerHTML = `<div class="category">${categoryName}</div>`;
-            const listElem = document.createElement('div');
-            listElem.className = 'menu-list';
-            data[categoryName].forEach(item => {
-                const itemElem = document.createElement('div');
-                itemElem.className = 'menu-item';
-                itemElem.innerHTML = `
-                    <img src="${item.image}" alt="${item.name}" onerror="this.onerror=null;this.src='images/no-image.png';">
-                    <div class="item-info">
-                        <div class="item-name">${item.name}</div>
-                        <div class="item-price">${item.price ? item.price : ''}</div>
-                    </div>
-                `;
-                listElem.appendChild(itemElem);
-            });
-            catElem.appendChild(listElem);
-            menuDiv.appendChild(catElem);
+fetch('menu_Version2.json')
+    .then(response => response.json())
+    .then(data => {
+        const catList = document.getElementById('cat-list');
+        Object.keys(data).forEach(cat => {
+            const el = document.createElement('div');
+            el.className = 'cat-card';
+            el.textContent = cat;
+            el.onclick = () => location.href = `category.html?cat=${encodeURIComponent(cat)}`;
+            catList.appendChild(el);
         });
-    } catch (e) {
-        document.getElementById('menu').textContent = 'Σφάλμα κατά τη φόρτωση του μενού.';
-    }
-}
-
-fetchMenu();
+    });
 </script>
 </body>
 </html>
