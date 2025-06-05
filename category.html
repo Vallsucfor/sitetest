@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="el">
+<head>
+    <meta charset="UTF-8">
+    <title>Κατηγορία Μενού</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <style>
+        body { font-family: Arial, sans-serif; background: #fafafa; margin: 0; padding: 0; }
+        .container { max-width: 900px; margin: 40px auto; background: #fff; border-radius: 12px; box-shadow: 0 2px 8px #0002; padding: 24px; }
+        h1 { text-align: center; }
+        .back { margin-bottom: 16px; display: inline-block; cursor: pointer; font-size: 1.1em; color: #007b00; }
+        .menu-list { display: flex; flex-wrap: wrap; gap: 16px; margin-top: 10px; }
+        .menu-item { background: #f8f8f8; border-radius: 8px; padding: 12px; flex: 1 1 320px; min-width: 260px; display: flex; align-items: center; box-shadow: 0 1px 4px #0001; }
+        .menu-item img { width: 70px; height: 70px; object-fit: cover; border-radius: 8px; margin-right: 12px; background: #eee; }
+        .item-info { flex: 1; }
+        .item-name { font-weight: bold; }
+        .item-price { color: #007b00; margin-top: 4px; }
+        @media (max-width: 700px) {
+            .menu-list { flex-direction: column; }
+            .menu-item { min-width: 0; }
+        }
+    </style>
+</head>
+<body>
+<div class="container">
+    <span class="back" onclick="history.back()">← Επιστροφή στις κατηγορίες</span>
+    <h1 id="cat-title">Κατηγορία</h1>
+    <div id="menu"></div>
+</div>
+<script>
+function getQueryParam(param) {
+    const params = new URLSearchParams(window.location.search);
+    return params.get(param);
+}
+
+const catName = getQueryParam('cat');
+document.getElementById('cat-title').textContent = catName || 'Κατηγορία';
+
+fetch('menu_Version2.json')
+    .then(response => response.json())
+    .then(data => {
+        if (!catName || !data[catName]) {
+            document.getElementById('menu').innerHTML = '<b>Η κατηγορία δεν βρέθηκε.</b>';
+            return;
+        }
+        const listElem = document.createElement('div');
+        listElem.className = 'menu-list';
+        data[catName].forEach(item => {
+            const itemElem = document.createElement('div');
+            itemElem.className = 'menu-item';
+            itemElem.innerHTML = `
+                <img src="${item.image}" alt="${item.name}" onerror="this.onerror=null;this.src='images/no-image.png';">
+                <div class="item-info">
+                    <div class="item-name">${item.name}</div>
+                    <div class="item-price">${item.price ? item.price : ''}</div>
+                </div>
+            `;
+            listElem.appendChild(itemElem);
+        });
+        document.getElementById('menu').appendChild(listElem);
+    });
+</script>
+</body>
+</html>
