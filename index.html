@@ -28,39 +28,38 @@
 </div>
 <script>
 async function fetchMenu() {
-    // Αν ο χρήστης ανοίγει το site από το GitHub Pages, τα raw αρχεία json ΔΕΝ σερβίρονται από το github.io
-    // Χρησιμοποιούμε το raw.githubusercontent.com για το fetch
-    const menuUrl = 'https://raw.githubusercontent.com/Vallsucfor/sitetest/main/menu_Version2.json';
-    const response = await fetch(menuUrl);
-    if (!response.ok) {
-        document.getElementById('menu').textContent = 'Αποτυχία φόρτωσης μενού.';
-        return;
-    }
-    const data = await response.json();
-    const menuDiv = document.getElementById('menu');
-    menuDiv.innerHTML = '';
-    // Για κάθε κατηγορία
-    Object.keys(data).forEach(categoryName => {
-        const catElem = document.createElement('div');
-        catElem.innerHTML = `<div class="category">${categoryName}</div>`;
-        const listElem = document.createElement('div');
-        listElem.className = 'menu-list';
-        data[categoryName].forEach(item => {
-            const itemElem = document.createElement('div');
-            itemElem.className = 'menu-item';
-            // Εικόνα fallback αν δεν βρεθεί
-            itemElem.innerHTML = `
-                <img src="${item.image}" alt="${item.name}" onerror="this.onerror=null;this.src='images/no-image.png';">
-                <div class="item-info">
-                    <div class="item-name">${item.name}</div>
-                    <div class="item-price">${item.price ? item.price : ''}</div>
-                </div>
-            `;
-            listElem.appendChild(itemElem);
+    try {
+        const response = await fetch('menu_Version2.json');
+        if (!response.ok) {
+            document.getElementById('menu').textContent = 'Αποτυχία φόρτωσης μενού.';
+            return;
+        }
+        const data = await response.json();
+        const menuDiv = document.getElementById('menu');
+        menuDiv.innerHTML = '';
+        Object.keys(data).forEach(categoryName => {
+            const catElem = document.createElement('div');
+            catElem.innerHTML = `<div class="category">${categoryName}</div>`;
+            const listElem = document.createElement('div');
+            listElem.className = 'menu-list';
+            data[categoryName].forEach(item => {
+                const itemElem = document.createElement('div');
+                itemElem.className = 'menu-item';
+                itemElem.innerHTML = `
+                    <img src="${item.image}" alt="${item.name}" onerror="this.onerror=null;this.src='images/no-image.png';">
+                    <div class="item-info">
+                        <div class="item-name">${item.name}</div>
+                        <div class="item-price">${item.price ? item.price : ''}</div>
+                    </div>
+                `;
+                listElem.appendChild(itemElem);
+            });
+            catElem.appendChild(listElem);
+            menuDiv.appendChild(catElem);
         });
-        catElem.appendChild(listElem);
-        menuDiv.appendChild(catElem);
-    });
+    } catch (e) {
+        document.getElementById('menu').textContent = 'Σφάλμα κατά τη φόρτωση του μενού.';
+    }
 }
 
 fetchMenu();
