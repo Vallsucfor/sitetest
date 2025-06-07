@@ -44,6 +44,11 @@
             justify-content: center;
             margin-top: 40px;
         }
+        .top-btn-wrapper {
+            display: flex;
+            justify-content: flex-start;
+            margin-bottom: 10px;
+        }
         @media (max-width: 700px) {
             .menu-list { flex-direction: column; }
             .menu-item { min-width: 0; }
@@ -53,7 +58,9 @@
 </head>
 <body>
 <div class="container">
-    <a class="back" href="index.html">← Επιστροφή στις κατηγορίες</a>
+    <div class="top-btn-wrapper">
+        <a class="back" href="index.html">← Επιστροφή στις κατηγορίες</a>
+    </div>
     <h1 id="cat-title">Κατηγορία</h1>
     <div id="menu"></div>
     <div class="bottom-btn-wrapper">
@@ -72,8 +79,14 @@ document.getElementById('cat-title').textContent = catName || 'Κατηγορί�
 fetch('menu_Version2.json')
     .then(response => response.json())
     .then(data => {
+        const menuDiv = document.getElementById('menu');
+        menuDiv.innerHTML = '';
         if (!catName || !data[catName]) {
-            document.getElementById('menu').innerHTML = '<b>Η κατηγορία δεν βρέθηκε.</b>';
+            menuDiv.innerHTML = '<b>Η κατηγορία δεν βρέθηκε.</b>';
+            return;
+        }
+        if (!data[catName].length) {
+            menuDiv.innerHTML = '<b>Δεν υπάρχουν προϊόντα σε αυτή την κατηγορία.</b>';
             return;
         }
         const listElem = document.createElement('div');
@@ -90,7 +103,7 @@ fetch('menu_Version2.json')
             `;
             listElem.appendChild(itemElem);
         });
-        document.getElementById('menu').appendChild(listElem);
+        menuDiv.appendChild(listElem);
     });
 </script>
 </body>
