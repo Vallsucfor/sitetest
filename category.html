@@ -14,24 +14,51 @@
         }
         .container { max-width: 900px; margin: 40px auto; background: #fff; border-radius: 12px; box-shadow: 0 2px 8px #0002; padding: 24px; }
         h1 { text-align: center; }
-        .back { margin-bottom: 16px; display: inline-block; cursor: pointer; font-size: 1.1em; color: #007b00; }
+        .back, .back-bottom {
+            margin-bottom: 16px;
+            display: inline-block;
+            cursor: pointer;
+            font-size: 1.1em;
+            color: #fff;
+            padding: 10px 20px;
+            border-radius: 8px;
+            background: linear-gradient(90deg, #0ca6cd 0%, #027ba1 100%);
+            border: none;
+            font-weight: bold;
+            text-decoration: none;
+            transition: background 0.2s, box-shadow 0.2s;
+            box-shadow: 0 2px 8px #0001;
+        }
+        .back:hover, .back-bottom:hover {
+            background: linear-gradient(90deg, #027ba1 0%, #0ca6cd 100%);
+            color: #fff;
+        }
         .menu-list { display: flex; flex-wrap: wrap; gap: 16px; margin-top: 10px; }
         .menu-item { background: #f8f8f8; border-radius: 8px; padding: 12px; flex: 1 1 320px; min-width: 260px; display: flex; align-items: center; box-shadow: 0 1px 4px #0001; }
         .menu-item img { width: 70px; height: 70px; object-fit: cover; border-radius: 8px; margin-right: 12px; background: #eee; }
         .item-info { flex: 1; }
         .item-name { font-weight: bold; }
         .item-price { color: #007b00; margin-top: 4px; }
+        .bottom-btn-wrapper {
+            display: flex;
+            justify-content: center;
+            margin-top: 40px;
+        }
         @media (max-width: 700px) {
             .menu-list { flex-direction: column; }
             .menu-item { min-width: 0; }
+            .bottom-btn-wrapper { margin-top: 24px; }
         }
     </style>
 </head>
 <body>
 <div class="container">
-    <span class="back" onclick="history.back()">← Επιστροφή στις κατηγορίες</span>
+    <a class="back" href="index.html">← Επιστροφή στις κατηγορίες</a>
     <h1 id="cat-title">Κατηγορία</h1>
     <div id="menu"></div>
+    <div class="bottom-btn-wrapper">
+        <a class="back-bottom" href="index.html">← Πίσω στις κατηγορίες</a>
+    </div>
 </div>
 <script>
 function getQueryParam(param) {
